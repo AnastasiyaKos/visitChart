@@ -1,24 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import {getStandNames} from "../../api/clevrService";
+import {getAllStands} from "../../api/clevrService";
 import s from './StandsList.module.css';
 import StandItem from "./StandItem/StandItem";
 
 const StandsList = () => {
-    const [standNames, setStandName] = useState([]);
+    const [allStands, setAllStands] = useState([]);
 
 
     useEffect(() => {
-         getStandNames().then((data) => {
+         getAllStands().then((data) => {
              const allStands = data.data;
-             setStandName(allStands);
-        })},[setStandName]);
+             setAllStands(allStands);
+        })},[setAllStands]);
 
 
     return (
         <div >
             <ul className={s.container}>
-                {standNames !== undefined &&
-                standNames.map((stand) => <StandItem standName={stand.name}/> )}
+                {allStands !== undefined &&
+                allStands.map((stand) => <StandItem key={stand.id} standName={stand.name}/> )}
             </ul>
         </div>
     );
