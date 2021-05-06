@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getVisitData} from "../../api/VisitChartService";
+import {getVisitData} from "../../api/clevrService";
 import {Bar} from 'react-chartjs-2';
 
 const divStyle = {
