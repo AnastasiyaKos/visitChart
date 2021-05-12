@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
-import VisitChart from "./components/VisitChart/VisitChart";
-import StandsList from "./components/StandsList/StandsList";
+import {Route} from "react-router-dom";
+import MainPage from "./components/MainPage/MainPage";
 
 
 function App() {
   return (
     <div className="App">
-      {/*<VisitChart/>*/}
-      <StandsList/>
+        <Route exact path='/'
+               render={() => <MainPage/>} />
     </div>
   );
 }

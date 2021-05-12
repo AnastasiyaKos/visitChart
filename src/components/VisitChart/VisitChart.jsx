@@ -18,7 +18,7 @@ let VisitChart = () => {
         await getVisitData().then((data) => {
             const apiData = data.data;
             for (const dataObj of apiData) {
-                count.push(dataObj.value);
+                count.push(dataObj.visits);
                 date.push(new Date(dataObj.timestamp).toLocaleDateString());
             }
         });

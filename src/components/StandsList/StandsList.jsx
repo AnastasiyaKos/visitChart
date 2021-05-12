@@ -17,8 +17,10 @@ const StandsList = () => {
     return (
         <div >
             <ul className={s.container}>
+                {allStands === [] && allStands !== undefined && 'У Вас нет стендов' }
                 {allStands !== undefined &&
-                allStands.map((stand) => <StandItem key={stand.id} standName={stand.name}/> )}
+                allStands.map((stand) => <StandItem key={stand.id} standName={stand.name} standIcon={stand.icon}
+                                                    exhibitionName={stand.exhibitionName}/> )}
             </ul>
         </div>
     );
