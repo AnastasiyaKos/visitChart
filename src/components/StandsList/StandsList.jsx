@@ -6,9 +6,14 @@ import StandItem from "./StandItem/StandItem";
 const StandsList = () => {
     const [allStands, setAllStands] = useState([]);
 
+    let userId = localStorage.getItem('userId');
+
+    if (!userId) {
+        localStorage.setItem('userId', '1')
+    }
 
     useEffect(() => {
-         getAllStands().then((data) => {
+         getAllStands(userId).then((data) => {
              const allStands = data.data;
              setAllStands(allStands);
         })},[setAllStands]);

@@ -3,15 +3,25 @@ import {downloadVisitorsData} from "../../api/clevrService";
 import s from './DownloadVisitor.module.css'
 
 
-const DownloadVisitors = () => {
+const DownloadVisitors = ({state}) => {
+    console.log(state)
 
+    let userId = localStorage.getItem('userId');
+    let language = localStorage.getItem('language');
+
+    if (!userId) {
+        localStorage.setItem('userId', '1');
+    }
+    if (!language) {
+        localStorage.setItem('language', 'en');
+    }
 
     const downloadPDF = () => {
-        downloadVisitorsData('pdf', 'en', [1620594000000, 1620853200000]);
+        downloadVisitorsData(userId, 'pdf', language, state);
     }
 
     const downloadExcel = () => {
-        downloadVisitorsData('excel', 'en', [1620594000000, 1620853200000]);
+        downloadVisitorsData(userId, 'excel', language, state);
     }
 
 
