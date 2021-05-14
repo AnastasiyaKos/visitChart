@@ -3,47 +3,77 @@ import {getVisitData} from "../../api/clevrService";
 import {Bar} from 'react-chartjs-2';
 
 const divStyle = {
-    height: '500px',
-    width: '650px'
+    maxHeight: '300px',
+    maxWidth: '750px',
+    marginBottom: '130px'
+};
+
+const canvasStyle = {
+    position: 'static',
+    height: '100%',
+    width: '100%'
 }
 
-let VisitChart = () => {
+let VisitChart = ({state}) => {
     const [chartData, setChartData] = useState({});
+    const [visits, setVisits] = useState(null);
+    const [clicks, setClicks] = useState(null);
+    const [timestamp, setTimestamp] = useState(null);
+
+    useEffect(() => {
+        if (state) {
+            chart();
+        }
+    }, [state]);
 
     const chart = async () => {
-        const count = [];
-        const date = [];
+        await getVisitData(state).then((data) => {
+            let visits = [];
+            let clicks = [];
+            let timestamp = [];
 
+            data.data.forEach((key) => {
+                visits.push(key.visits);
+                clicks.push(key.clicks);
+                timestamp.push(new Date(key.timestamp).toLocaleDateString());
+            });
 
-        await getVisitData().then((data) => {
-            const apiData = data.data;
-            for (const dataObj of apiData) {
-                count.push(dataObj.visits);
-                date.push(new Date(dataObj.timestamp).toLocaleDateString());
-            }
+            setVisits(visits);
+            setClicks(clicks);
+            setTimestamp(timestamp);
         });
 
-        setChartData({
-            labels: date,
-            datasets: [{
-                label: 'Количество посещений',
-                data: count,
-                backgroundColor: [
-                    'rgba(50, 119, 108, 0.6)'
-                ],
-                borderWidth: 1
-            }]
-        })
     }
 
     useEffect(() => {
-        chart()
-    }, [])
+        if (visits && clicks && timestamp) {
+            setChartData({
+                labels: timestamp,
+                datasets: [{
+                    label: 'Количество посещений',
+                    data: visits,
+                    backgroundColor: [
+                        'rgba(50, 119, 108, 0.6)'
+                    ],
+                    borderWidth: 1
+                }, {
+                    label: 'Количество кликов',
+                    data: clicks,
+                    backgroundColor: [
+                        'rgba(50, 20, 108, 0.6)'
+                    ],
+                    borderWidth: 1
+                }]
+            })
+        }
+    }, [timestamp]);
 
 
     return (
         <div style={divStyle}>
-            <Bar data={chartData}/>
+            <h1>Общая статистика всех Ваших стендов:</h1>
+            {visits && clicks && timestamp &&
+            <Bar data={chartData} style={canvasStyle}/>}
         </div>
 
     );

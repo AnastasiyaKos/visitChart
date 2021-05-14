@@ -15,7 +15,8 @@ const StandsList = () => {
 
 
     return (
-        <div >
+        <div className={s.containerStandList}>
+            <h1>Список Ваших стендов:</h1>
             <ul className={s.container}>
                 {allStands === [] && allStands !== undefined && 'У Вас нет стендов' }
                 {allStands !== undefined &&

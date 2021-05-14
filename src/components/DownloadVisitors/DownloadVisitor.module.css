@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 700px;
+
+    margin: 0 auto 60px;
+}
+
+.button {
+    width: 200px;
+    height: 70px;
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+    text-align: center;
+    align-self: center;
+    margin: 0 5px;
+}
