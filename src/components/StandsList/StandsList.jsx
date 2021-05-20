@@ -18,7 +18,6 @@ const StandsList = () => {
              setAllStands(allStands);
         })},[setAllStands]);
 
-
     return (
         <div className={s.container}>
             <h1>Список Ваших стендов:</h1>
