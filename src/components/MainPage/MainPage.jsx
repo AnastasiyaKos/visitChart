@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import VisitChart from "../VisitChart/VisitChart";
 import StandsList from "../StandsList/StandsList";
-import FilterByDate from "../FilterByDate/FilterByDate";
 import s from './MainPage.module.css'
 import DownloadVisitors from "../DownloadVisitors/DownloadVisitors.jsx";
+import Header from "../Header/Header";
 
 
 const MainPage = () => {
@@ -11,10 +11,8 @@ const MainPage = () => {
 
     return (
         <div className={s.mainPage}>
-            <div className={s.container}>
-                <StandsList/>
-                <FilterByDate  setState={setState}/>
-            </div>
+            <Header setState={setState}/>
+            <StandsList className={s.container}/>
             <div className={s.chartContainer}>
                 <VisitChart state={state}/>
             </div>

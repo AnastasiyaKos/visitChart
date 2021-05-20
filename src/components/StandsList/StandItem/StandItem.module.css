@@ -9,7 +9,7 @@ a {
 
     margin: 4px;
     padding: 5px 10px;
-    width: 300px;
+    width: 32%;
 
     list-style: none;
     border: 2px solid cadetblue;
@@ -48,4 +48,16 @@ a {
 
 .standItem:hover .standName .description {
     opacity: 0.7;
+}
+
+@media (max-width: 990px) {
+    .standItem {
+        width: 48%;
+    }
+}
+
+@media (max-width: 600px) {
+    .standItem {
+        width: 98%;
+    }
 }

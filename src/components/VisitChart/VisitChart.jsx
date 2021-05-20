@@ -3,15 +3,14 @@ import {getVisitData} from "../../api/clevrService";
 import {Bar} from 'react-chartjs-2';
 
 const divStyle = {
-    maxHeight: '300px',
-    maxWidth: '750px',
-    marginBottom: '130px'
+    maxWidth: '100%',
 };
 
 const canvasStyle = {
     position: 'static',
-    height: '100%',
-    width: '100%'
+    margin: '0 40px'
+    // height: '100%',
+    // width: '100%'
 }
 
 let VisitChart = ({state}) => {

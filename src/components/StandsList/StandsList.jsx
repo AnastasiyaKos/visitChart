@@ -20,9 +20,9 @@ const StandsList = () => {
 
 
     return (
-        <div className={s.containerStandList}>
+        <div className={s.container}>
             <h1>Список Ваших стендов:</h1>
-            <ul className={s.container}>
+            <ul className={s.containerStandList}>
                 {allStands === [] && allStands !== undefined && 'У Вас нет стендов' }
                 {allStands !== undefined &&
                 allStands.map((stand) => <StandItem key={stand.id} standName={stand.name} standIcon={stand.icon}
